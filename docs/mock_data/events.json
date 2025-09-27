@@ -1,0 +1,20 @@
+[
+  {
+    "id": "e1",
+    "name": "Losar (Tibetan New Year) – Rumtek",
+    "date": "2025-03-02",
+    "monasteryId": 1
+  },
+  {
+    "id": "e2",
+    "name": "Bumchu Festival – Tashiding",
+    "date": "2025-02-25",
+    "monasteryId": 2
+  },
+  {
+    "id": "e3",
+    "name": "Singhe Chaam Dance – Enchey",
+    "date": "2025-07-15",
+    "monasteryId": 3
+  }
+]

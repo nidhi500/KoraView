@@ -1,0 +1,31 @@
+{
+  "id": 2,
+  "name": "Tashiding Monastery",
+  "description": "Tashiding Monastery is a Buddhist monastery of the Nyingma sect, located in West Sikkim, perched on a hilltop between the Rathong Chu and Rangeet Rivers. Built in 1717 by Ngadak Sempa Chempo. It is deeply revered in Sikkim and known as one of the holiest monasteries. Legend says Guru Padmasambhava selected the location. It contains 41 chortens (stupas), stone mani walls engraved with Buddhist mantras, and the famous Thong-Wa-Rang-Dol chorten, said to cleanse devotees of sins by mere sight. Festival of Bumchu (holy water) is celebrated on 14-15th day of the first month of Tibetan lunar calendar.",
+  "location": { "lat": 27.3144, "lng": 88.2743 },
+  "tour360": "/assets/360/tashiding_360.jpg",
+  "audio": {
+    "english": "/assets/audio/tashiding_en.mp3",
+    "nepali": "/assets/audio/tashiding_np.mp3"
+  },
+  "archives": [
+    {
+      "id": "t1",
+      "title": "Chortens of Enlightenment (41 stupas)",
+      "image": "/assets/archives/tashiding_chortens.jpg"
+    },
+    {
+      "id": "t2",
+      "title": "Mani Wall at Tashiding",
+      "image": "/assets/archives/tashiding_mani_wall.jpg"
+    }
+  ],
+  "festivals": [
+    "Bumchu Festival (14-15 first month Tibetan calendar)"
+  ],
+  "visiting_info": {
+    "entry_fee_inr": 0,
+    "timings": "7:00 AM-7:00 PM",
+    "photography_allowed": true
+  }
+}

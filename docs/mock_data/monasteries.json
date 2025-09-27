@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Rumtek Monastery",
+    "location": { "lat": 27.3495, "lng": 88.5731 },
+    "thumbnail": "/assets/images/rumtek_thumb.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Tashiding Monastery",
+    "location": { "lat": 27.3144, "lng": 88.2743 },
+    "thumbnail": "/assets/images/tashiding_thumb.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Enchey Monastery",
+    "location": { "lat": 27.3389, "lng": 88.6065 },
+    "thumbnail": "/assets/images/enchey_thumb.jpg"
+  }
+]

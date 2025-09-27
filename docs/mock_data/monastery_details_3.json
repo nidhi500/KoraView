@@ -1,0 +1,33 @@
+{
+  "id": 3,
+  "name": "Enchey Monastery",
+  "description": "Enchey Monastery (‘Solitary Monastery’) is a Nyingma order Tibetan Buddhist monastery located above Gangtok in East Sikkim, founded by Lama Druptab Karpo in 1840. It houses around 90 monks. Known for its beautiful Chaam dances (e.g., Singhe Chaam, Pang Lhabsol), scenic forested surroundings, and its importance to local religious life. The architecture is Tibetan style, modest yet spiritually rich. Located just a few kilometers from central Gangtok, it offers visitors both spiritual ambiance and good views.",
+  "location": { "lat": 27.3389, "lng": 88.6065 },
+  "tour360": "/assets/360/enchey_360.jpg",
+  "audio": {
+    "english": "/assets/audio/enchey_en.mp3",
+    "nepali": "/assets/audio/enchey_np.mp3"
+  },
+  "archives": [
+    {
+      "id": "e1",
+      "title": "Singhe Chaam Dance Performance",
+      "image": "/assets/archives/enchey_chaam.jpg"
+    },
+    {
+      "id": "e2",
+      "title": "Historic Painting Panels",
+      "image": "/assets/archives/enchey_paintings.jpg"
+    }
+  ],
+  "festivals": [
+    "Singhe Chaam",
+    "Pang Lhabsol",
+    "Chaam Dance"
+  ],
+  "visiting_info": {
+    "entry_fee_inr": 0,
+    "timings": "6:00 AM-5:00 PM",
+    "photography_allowed": true
+  }
+}

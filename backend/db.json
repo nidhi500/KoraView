@@ -1,0 +1,54 @@
+{
+  "monasteries": [
+    {
+      "id": 1,
+      "name": "Rumtek Monastery",
+      "location": { "lat": 27.3309, "lng": 88.5182 },
+      "thumbnail": "/assets/images/rumtek_thumb.jpg",
+      "tour360": "/assets/360/rumtek.jpg",
+      "audio": {
+        "english": "/assets/audio/rumtek_en.mp3",
+        "nepali": "/assets/audio/rumtek_np.mp3"
+      },
+      "archives": [
+        {
+          "id": "a1",
+          "title": "17th Century Manuscript",
+          "image": "/assets/archives/rumtek_manuscript.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Tashiding Monastery",
+      "location": { "lat": 27.3144, "lng": 88.2743 },
+      "thumbnail": "/assets/images/tashiding_thumb.jpg",
+      "tour360": "/assets/360/tashiding.jpg",
+      "audio": {
+        "english": "/assets/audio/tashiding_en.mp3",
+        "nepali": "/assets/audio/tashiding_np.mp3"
+      },
+      "archives": [
+        {
+          "id": "a1",
+          "title": "Palm Leaf Manuscript",
+          "image": "/assets/archives/tashiding_manuscript.jpg"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "name": "Losar (Tibetan New Year)",
+      "date": "2025-03-02",
+      "monasteryId": 1
+    },
+    {
+      "id": "e2",
+      "name": "Saga Dawa",
+      "date": "2025-05-15",
+      "monasteryId": 2
+    }
+  ]
+}
