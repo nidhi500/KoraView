@@ -30,3 +30,8 @@ Monastery.insertMany(monasteries)
     mongoose.disconnect();
   })
   .catch(err => console.log(err));
+
+monasteries[0].archives = [
+  { type: "mural", src: "/assets/archives/rumtek_mural.jpg", description: "Buddhist mural inside Rumtek monastery." },
+  { type: "manuscript", src: "/assets/archives/rumtek_manuscript.jpg", description: "Ancient Tibetan manuscript preserved at Rumtek." }
+]

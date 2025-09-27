@@ -13,19 +13,26 @@ L.Icon.Default.mergeOptions({
 
 export default function MapView({ monasteries, onSelect }) {
   return (
-    <MapContainer center={[27.33, 88.51]} zoom={10} className="h-full w-full">
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {monasteries.map((m) => (
-        <Marker
-          key={m.id}
-          position={[m.location.lat, m.location.lng]}
-          eventHandlers={{
-            click: () => onSelect(m),
-          }}
-        >
-          <Popup>{m.name}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <div className="h-[500px] w-full relative z-0">
+      <MapContainer
+        center={[27.33, 88.51]}
+        zoom={10}
+        className="h-full w-full"
+        style={{ zIndex: 0 }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {monasteries.map((m) => (
+          <Marker
+            key={m.id}
+            position={[m.location.lat, m.location.lng]}
+            eventHandlers={{
+              click: () => onSelect(m),
+            }}
+          >
+            <Popup>{m.name}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
   );
 }
