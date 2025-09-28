@@ -1,16 +1,17 @@
-const mongoose = require('mongoose');
+// models/Monastery.js
+import mongoose from "mongoose";
 
 const monasterySchema = new mongoose.Schema({
   name: { type: String, required: true },
-  description: String,
-  lat: Number,
-  lng: Number,
-  thumbnail: String,
-  panorama360: String,
-  approved: { type: Boolean, default: false },
-  organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' },
-  audioGuides: [{ lang: String, url: String }],
-  createdAt: { type: Date, default: Date.now }
+  location: {
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+  },
+  thumbnail: { type: String },
+  description: { type: String },
+  archives: [{ type: String }], // array of archive URLs or IDs
 });
 
-module.exports = mongoose.model('Monastery', monasterySchema);
+const Monastery = mongoose.model("Monastery", monasterySchema);
+
+export default Monastery;

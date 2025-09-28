@@ -1,19 +1,16 @@
-const Monastery = require('../models/Monastery');
+// controllers/monasteryController.js
 
-exports.getAllMonasteries = async (req, res) => {
-  const monasteries = await Monastery.find({ approved: true });
-  res.json(monasteries);
+import Monastery from "../models/Monastery.js";
+
+// Named export
+export const getMonasteries = async (req, res) => {
+  try {
+    const monasteries = await Monastery.find();
+    res.json(monasteries);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
-exports.createMonastery = async (req, res) => {
-  const monastery = await Monastery.create(req.body);
-  res.status(201).json(monastery);
-};
-
-exports.approveMonastery = async (req, res) => {
-  const monastery = await Monastery.findById(req.params.id);
-  if (!monastery) return res.status(404).json({ message: 'Monastery not found' });
-  monastery.approved = true;
-  await monastery.save();
-  res.json(monastery);
-};
+// You can add more named exports for other monastery endpoints
+// export const getMonasteryById = async (req, res) => { ... }

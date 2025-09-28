@@ -1,16 +1,12 @@
-const express = require('express');
-const {
-  getAllMonasteries,
-  createMonastery,
-  approveMonastery
-} = require('../controllers/monasteryController');
-const { protect } = require('../middleware/authMiddleware');
-const { authorize } = require('../middleware/rbacMiddleware');
+import express from "express";
+import { getMonasteries } from "../controllers/monasteryController.js";
 
 const router = express.Router();
 
-router.get('/', getAllMonasteries);
-router.post('/', protect, authorize('admin', 'contributor'), createMonastery);
-router.put('/approve/:id', protect, authorize('admin'), approveMonastery);
+// Example routes
+router.get("/", getMonasteries);
 
-module.exports = router;
+// Add more routes here as needed
+// router.get("/:id", getMonasteryById);
+
+export default router;

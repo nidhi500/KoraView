@@ -11,7 +11,7 @@ export default function AdminDashboard() {
 
   const fetchMonasteries = async () => {
     const res = await getMonasteries();
-    setMonasteries(res.data);
+    setMonasteries(res.data || res);
   };
 
   const handleApprove = async (id) => {
@@ -20,8 +20,8 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
       <table className="w-full table-auto border">
         <thead>
           <tr>
@@ -31,12 +31,19 @@ export default function AdminDashboard() {
           </tr>
         </thead>
         <tbody>
-          {monasteries.map(m => (
+          {monasteries.map((m) => (
             <tr key={m._id}>
               <td className="border px-2 py-1">{m.name}</td>
               <td className="border px-2 py-1">{m.approved ? "Yes" : "No"}</td>
               <td className="border px-2 py-1">
-                {!m.approved && <button onClick={()=>handleApprove(m._id)} className="btn bg-green-500 text-white px-2 py-1 rounded">Approve</button>}
+                {!m.approved && (
+                  <button
+                    className="btn bg-green-500 text-white px-2 py-1 rounded"
+                    onClick={() => handleApprove(m._id)}
+                  >
+                    Approve
+                  </button>
+                )}
               </td>
             </tr>
           ))}

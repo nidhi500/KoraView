@@ -1,25 +1,19 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+// src/App.js
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import MonasteryDetail from "./pages/MonasteryDetail";
-import Admin from "./pages/Admin";
 import Login from "./pages/Login";
-
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem("token");
-  const userRole = localStorage.getItem("role");
-
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/monastery/:id" element={<MonasteryDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={
-          isLoggedIn && userRole === "admin" ? <Admin /> : <Navigate to="/login" />
-        } />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

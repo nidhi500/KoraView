@@ -1,85 +1,93 @@
-import React, { useEffect, useState } from "react";
-import { getMonasteries } from "../api/monasteryAPI";
-import MonasteryCard from "../components/MonasteryCard";
-import MapView from "../components/MapView";
-import MonasteryModal from "../components/MonasteryModal";
+// src/pages/Home.jsx
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
-function Home() {
-  const [monasteries, setMonasteries] = useState([]);
-  const [selected, setSelected] = useState(null); // for modal
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getMonasteries();      // Axios response
-        if (Array.isArray(res.data)) {
-          setMonasteries(res.data);
-        } else {
-          console.error("Unexpected API response:", res.data);
-          setMonasteries([]);
-        }
-      } catch (err) {
-        console.error("Failed to fetch monasteries:", err);
-      }
-    };
-
-    fetchData();
-  }, []);
+const Home = () => {
+  const { user, logout } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <header className="relative bg-indigo-700 text-white h-96 flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-70"
-          style={{ backgroundImage: "url(/assets/images/hero_bg.jpg)" }}
-        />
-        <div className="relative text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-extrabold drop-shadow-lg">
-            Monastery360
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl drop-shadow">
-            Explore Sikkim’s monasteries from home
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col">
+      {/* Header */}
+      <header className="bg-indigo-700 text-white py-8 shadow-md">
+        <div className="container mx-auto flex items-center justify-between px-4 md:px-0">
+          <h1 className="text-3xl md:text-4xl font-extrabold">Monastery360</h1>
+          <nav className="space-x-4">
+            <Link
+              to="/"
+              className="hover:text-yellow-300 transition-colors duration-300"
+            >
+              Home
+            </Link>
+            <Link
+              to="/explore"
+              className="hover:text-yellow-300 transition-colors duration-300"
+            >
+              Explore
+            </Link>
+            <Link
+              to="/events"
+              className="hover:text-yellow-300 transition-colors duration-300"
+            >
+              Events
+            </Link>
+          </nav>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="container mx-auto p-4">
-        {/* Featured Monasteries Grid */}
-        <section className="my-8">
-          <h2 className="text-3xl font-bold text-indigo-700 mb-4 text-center">
-            Featured Monasteries
+      <main className="flex-grow container mx-auto px-4 md:px-0 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-indigo-700 mb-4">
+            Explore the Monasteries of Sikkim
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {Array.isArray(monasteries) &&
-              monasteries.map((m) => (
-                <MonasteryCard
-                  key={m.id}
-                  monastery={m}
-                  onClick={() => setSelected(m)}
-                />
-              ))}
-          </div>
-        </section>
+          <p className="text-lg md:text-xl text-gray-700">
+            Immerse yourself in the rich culture, history, and spiritual beauty of Sikkim’s monasteries.
+          </p>
+        </div>
 
-        {/* Interactive Map */}
-        <section className="my-12">
-          <h2 className="text-3xl font-bold text-indigo-700 mb-4 text-center">
-            Explore on Map
-          </h2>
-          <div className="h-96 rounded-lg overflow-hidden shadow-lg">
-            <MapView monasteries={monasteries} onSelect={setSelected} />
-          </div>
-        </section>
+        {/* User Role Actions */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+          {user ? (
+            <div className="text-center space-y-4">
+              <p className="text-lg text-gray-800">
+                Logged in as <span className="font-semibold">{user.email}</span> ({user.role})
+              </p>
+
+              {user.role === "admin" && (
+                <Link
+                  to="/admin"
+                  className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300"
+                >
+                  Go to Admin Dashboard
+                </Link>
+              )}
+
+              <button
+                onClick={logout}
+                className="inline-block px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-md transition-all duration-300"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </main>
 
-      {/* Modal for 360° + Audio + Archives */}
-      {selected && (
-        <MonasteryModal monastery={selected} onClose={() => setSelected(null)} />
-      )}
+      {/* Footer */}
+      <footer className="bg-indigo-800 text-white py-6 mt-12 text-center">
+        <p>© 2025 Monastery360 | In partnership with Sikkim Tourism</p>
+        <p className="text-sm italic">“Where Nature Smiles”</p>
+      </footer>
     </div>
   );
-}
+};
 
 export default Home;
