@@ -13,11 +13,14 @@
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
     "react": "^19.1.1",
+    "react-calendar": "^6.0.0",
     "react-dom": "^19.1.1",
     "react-leaflet": "^5.0.0",
     "react-player": "^3.3.3",
     "react-router-dom": "^7.9.3",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
