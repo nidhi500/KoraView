@@ -1,8 +1,8 @@
 // src/pages/Explore.jsx
-import React from "react";
+import React, { useState, useMemo } from "react";
 import MonasteryCard from "../components/MonasteryCard";
 
-// Monasteries data (can be imported from a central file later)
+import Navbar from "../components/Navbar";
 const monasteries = [
   {
     name: "Pemayangtse Monastery",
@@ -64,20 +64,70 @@ const monasteries = [
 ];
 
 const Explore = () => {
-  return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">Explore Monasteries of Sikkim</h1>
-        <p className="text-center text-gray-600 mb-10">
-          Discover the rich spiritual heritage of Sikkim through interactive 360° views, history, audio narration, and ancient manuscripts.
-        </p>
+  const [selectedTab, setSelectedTab] = useState({});
+  const heroWords = useMemo(() => ["Explore", "Discover", "Learn"], []);
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {monasteries.map((m) => (
-            <MonasteryCard key={m.name} monastery={m} />
+  const toggleTab = (monasteryName, tabName) => {
+    const key = `${monasteryName}-${tabName}`;
+    setSelectedTab(prev => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-amber-50 text-gray-900">
+      {/* Hero */}
+      <Navbar />
+      <section
+        className="relative py-24 bg-cover bg-center overflow-hidden"
+        style={{ backgroundImage: "url('/assets/images/hero_bg.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/60 via-amber-800/50 to-orange-900/60"></div>
+        <div className="container mx-auto px-6 relative z-10 text-center text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Explore Monasteries of Sikkim</h1>
+          <p className="text-2xl md:text-3xl mb-6 font-light">
+            <span className="inline-block relative h-[1em] overflow-y-hidden">
+              <span className="inline-block animate-wordSwap">{heroWords[0]}</span>
+            </span>
+          </p>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-amber-50/95 mb-8">
+            Discover the rich spiritual heritage of Sikkim through interactive 360° views, history, audio narration, and ancient manuscripts.
+          </p>
+        </div>
+      </section>
+
+      {/* Monastery Grid */}
+      <section className="py-16 container mx-auto px-6">
+        <div className="grid md:grid-cols-3 gap-12">
+          {monasteries.map(m => (
+            <MonasteryCard
+              key={m.name}
+              monastery={m}
+              selectedTab={selectedTab}
+              toggleTab={toggleTab}
+            />
           ))}
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-orange-900 text-white py-12">
+        <div className="container mx-auto px-6 text-center">
+          <div className="w-20 h-20 bg-gradient-to-br from-amber-300 to-orange-400 rounded-full flex items-center justify-center shadow-lg border-2 border-amber-200 mx-auto mb-4 font-bold text-orange-800">Logo</div>
+          <h5 className="text-2xl font-bold mb-2">KoraView</h5>
+          <p className="text-amber-200 mb-6">Preserving the Sacred Heritage of Sikkim</p>
+          <div className="border-t border-orange-700 pt-6">
+            <p className="text-amber-300 text-sm">© 2025 All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Page-scoped keyframes for animations */}
+      <style>{`
+        @keyframes wordSwap { 0% { transform: translateY(100%); opacity:0 } 40% { transform: translateY(0%); opacity:1 } 100% { transform: translateY(0%); opacity:1 } }
+        .animate-wordSwap { animation: wordSwap 800ms ease forwards }
+      `}</style>
     </div>
   );
 };

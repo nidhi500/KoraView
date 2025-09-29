@@ -1,119 +1,56 @@
-// src/pages/Homestays.jsx
+// src/pages/LocalTours.jsx
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 
-const homestayList = [
+const tours = [
   {
     id: 1,
-    name: "Mimah Homestay",
+    name: "Gangtok City Heritage Tour",
     location: "Gangtok, East Sikkim",
     description:
-      "Family-run homestay in Gangtok with wooden interiors and local charm, close to MG Marg and city center.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Mimah-Homestay-Gangtok.jpg",
+      "Explore Gangtok’s heritage spots including Namgyal Institute of Tibetology, Do Drul Chorten Stupa, and MG Marg walk.",
     gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Mimah-Homestay-Gangtok.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1a/8c/1e/41/mimah-homestay.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1a/8c/1e/45/mimah.jpg",
+      "https://www.sikkimtourism.gov.in/uploads/places/namgyal-institute.jpg",
+      "https://www.sikkimtourism.gov.in/uploads/places/do-drul-chorten.jpg",
+      "https://www.sikkimtourism.gov.in/uploads/places/mg-marg-gangtok.jpg",
     ],
-    pricePerNight: 1200,
+    price: "₹2500/person",
     contact: "+91 9876543210",
-    approved: true,
+    audioGuides: [
+      "https://www.sample-videos.com/audio/mp3/crowd-cheering.mp3",
+    ],
+    videoGuides: [
+      "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4",
+    ],
   },
   {
     id: 2,
-    name: "Tara Homestay",
-    location: "Pelling, West Sikkim",
+    name: "Tsomgo Lake & Baba Mandir Excursion",
+    location: "East Sikkim",
     description:
-      "Peaceful homestay above Pelling town with panoramic mountain views. Hosts offer guided walks and local meals.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Tara-Homestay-Pelling.jpg",
+      "Day trip to the sacred Tsomgo Lake and Baba Mandir, high-altitude marvels surrounded by snow peaks.",
     gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Tara-Homestay-Pelling.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1c/3e/4e/12/tara-homestay.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1c/3e/4e/10/tara.jpg",
+      "https://www.sikkimtourism.gov.in/uploads/places/tsomgo-lake.jpg",
+      "https://www.sikkimtourism.gov.in/uploads/places/baba-mandir.jpg",
     ],
-    pricePerNight: 1500,
-    contact: "+91 9876543211",
-    approved: true,
-  },
-  {
-    id: 3,
-    name: "Sonam’s Homestay",
-    location: "Lachung, North Sikkim",
-    description:
-      "Authentic village vibe run by an apple farmer. Guests can explore orchards and experience local culture.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sonams-Homestay-Lachung.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sonams-Homestay-Lachung.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/21/29/ea/6a/sonams.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/21/29/ea/66/lachung.jpg",
+    price: "₹3500/person",
+    contact: "+91 8765432109",
+    audioGuides: [
+      "https://www.sample-videos.com/audio/mp3/crowd-cheering.mp3",
     ],
-    pricePerNight: 1800,
-    contact: "+91 9876543212",
-    approved: true,
-  },
-  {
-    id: 4,
-    name: "Yangsum Heritage Farmhouse",
-    location: "Rinchenpong, West Sikkim",
-    description:
-      "A heritage farmhouse blending Sikkimese history with comfort. Organic farm meals and cultural shows available.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Yangsum-Heritage-Farmhouse-Rinchenpong.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Yangsum-Heritage-Farmhouse-Rinchenpong.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/df/04/6c/yangsum-heritage-farm.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/df/04/70/farmhouse.jpg",
+    videoGuides: [
+      "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4",
     ],
-    pricePerNight: 2500,
-    contact: "+91 9876543213",
-    approved: true,
   },
-  {
-    id: 5,
-    name: "Gonpad Lama’s Homestay",
-    location: "Dzongu, North Sikkim",
-    description:
-      "Located in the Lepcha tribal region, offering immersive local experiences like cooking, foraging, and guided walks.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Gonpad-Lamas-Homestay-Dzongu.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Gonpad-Lamas-Homestay-Dzongu.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/18/f7/ed/32/dzongu.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/18/f7/ed/2e/homestay.jpg",
-    ],
-    pricePerNight: 2000,
-    contact: "+91 9876543214",
-    approved: true,
-  },
-  {
-    id: 6,
-    name: "Munsell Homestay",
-    location: "Ravangla, South Sikkim",
-    description:
-      "Nestled in a spice & vegetable plantation, this homestay offers serenity, valley views, and home-cooked meals.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Munsell-Homestay-Ravangla.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Munsell-Homestay-Ravangla.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/0d/14/9a/5a/munsell-homestay.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/0d/14/9a/5c/ravangla.jpg",
-    ],
-    pricePerNight: 1600,
-    contact: "+91 9876543215",
-    approved: true,
-  },
+  // add other tours similarly...
 ];
 
-export default function Homestays() {
-  const [homestays] = useState(homestayList);
+export default function LocalTours() {
   const [selected, setSelected] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
 
-  const openModal = (hs) => {
-    setSelected(hs);
+  const openModal = (tour) => {
+    setSelected(tour);
     setGalleryIndex(0);
     document.body.style.overflow = "hidden";
   };
@@ -138,53 +75,47 @@ export default function Homestays() {
       <Navbar />
       <div className="container mx-auto px-6 py-20">
         <h1 className="text-4xl md:text-5xl font-extrabold text-indigo-700 mb-4 text-center">
-          Sikkim Homestays
+          Local Tours in Sikkim
         </h1>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
-          Handpicked homestays that give you a local, authentic experience — family hosts,
-          home-cooked meals and easy access to nearby monasteries and trails.
+          Explore handpicked local tours across Sikkim — from heritage walks to monasteries, 
+          cultural villages, and breathtaking Himalayan valleys.
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {homestays.map((hs) => (
+          {tours.map((tour) => (
             <article
-              key={hs.id}
+              key={tour.id}
               className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100"
             >
               <div className="relative h-48">
                 <img
-                  src={hs.thumbnail}
-                  alt={hs.name}
+                  src={tour.gallery[0]}
+                  alt={tour.name}
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute left-3 top-3 bg-white/80 text-xs rounded px-2 py-1 font-medium text-gray-800">
-                  {hs.location}
-                </div>
-                <div className="absolute right-3 top-3">
-                  <span className="bg-green-600 text-white text-xs px-2 py-1 rounded">
-                    {hs.approved ? "Verified" : "Pending"}
-                  </span>
+                  {tour.location}
                 </div>
               </div>
 
               <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-800">{hs.name}</h3>
-                <p className="text-gray-600 mt-2 line-clamp-3">{hs.description}</p>
+                <h3 className="text-xl font-semibold text-gray-800">{tour.name}</h3>
+                <p className="text-gray-600 mt-2 line-clamp-3">{tour.description}</p>
 
                 <div className="mt-4 flex items-center justify-between">
                   <div className="text-sm text-gray-700 font-medium">
-                    ₹{hs.pricePerNight}{" "}
-                    <span className="text-xs text-gray-500">/ night</span>
+                    {tour.price}
                   </div>
                   <div className="flex gap-2">
                     <button
-                      onClick={() => openModal(hs)}
+                      onClick={() => openModal(tour)}
                       className="bg-indigo-600 text-white px-3 py-1 rounded-lg hover:bg-indigo-700 transition"
                     >
                       View
                     </button>
                     <a
-                      href={`tel:${hs.contact.replace(/\s+/g, "")}`}
+                      href={`tel:${tour.contact.replace(/\s+/g, "")}`}
                       className="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg hover:bg-gray-200 transition"
                     >
                       Call
@@ -199,11 +130,7 @@ export default function Homestays() {
 
       {/* Modal */}
       {selected && (
-        <div
-          className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-6"
-          aria-modal="true"
-          role="dialog"
-        >
+        <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-6">
           <div
             className="fixed inset-0 bg-black/50"
             onClick={closeModal}
@@ -236,7 +163,6 @@ export default function Homestays() {
                     </>
                   )}
                 </div>
-
                 {selected.gallery.length > 1 && (
                   <div className="flex gap-2 p-3 overflow-x-auto">
                     {selected.gallery.map((g, i) => (
@@ -282,10 +208,8 @@ export default function Homestays() {
                 <p className="text-gray-700 mt-4">{selected.description}</p>
 
                 <div className="mt-4">
-                  <div className="text-sm text-gray-600">Price per night</div>
-                  <div className="text-xl font-semibold">
-                    ₹{selected.pricePerNight}
-                  </div>
+                  <div className="text-sm text-gray-600">Price</div>
+                  <div className="text-xl font-semibold">{selected.price}</div>
                 </div>
 
                 <div className="mt-4">
@@ -298,15 +222,42 @@ export default function Homestays() {
                   </a>
                 </div>
 
+                {/* Audio / Video guides */}
+                <div className="mt-4 space-y-3">
+                  {selected.audioGuides?.length > 0 && (
+                    <div>
+                      <div className="text-sm text-gray-600 mb-1">Audio Guide</div>
+                      {selected.audioGuides.map((a, idx) => (
+                        <audio key={idx} controls className="w-full mt-1">
+                          <source src={a} />
+                          Your browser does not support the audio element.
+                        </audio>
+                      ))}
+                    </div>
+                  )}
+
+                  {selected.videoGuides?.length > 0 && (
+                    <div>
+                      <div className="text-sm text-gray-600 mb-1">Video Guide</div>
+                      {selected.videoGuides.map((v, idx) => (
+                        <video key={idx} controls className="w-full rounded">
+                          <source src={v} />
+                          Your browser does not support the video tag.
+                        </video>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
                 <div className="mt-auto flex items-center gap-3 pt-6">
                   <a
                     href={`tel:${selected.contact.replace(/\s+/g, "")}`}
                     className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700"
                   >
-                    Book Now
+                    Book Tour
                   </a>
                   <button
-                    onClick={() => alert("Request sent to host (demo)")}
+                    onClick={() => alert("Request sent to tour operator (demo)")}
                     className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200"
                   >
                     Request Info

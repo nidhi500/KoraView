@@ -19,7 +19,7 @@ const createAdmin = async () => {
   const admin = new User({
     name: "Admin",
     email: "admin@sikkim360.com",
-    password: "admin123", // Will be hashed automatically
+    password: "admin1234", // Will be hashed automatically
     role: "admin"
   });
 

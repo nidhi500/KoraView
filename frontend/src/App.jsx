@@ -10,7 +10,8 @@ import CulturalCalendar from "./pages/CulturalCalendar";
 import Community from "./pages/Community";
 import Homestays from "./pages/Homestays";
 import Handicrafts from "./pages/Handicrafts";
-import Tours from "./pages/Tours";
+import Tours from "./pages/LocalTours";
+
 function App() {
   return (
     <AuthProvider>
