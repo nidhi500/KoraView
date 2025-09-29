@@ -15,14 +15,14 @@ L.Icon.Default.mergeOptions({
 
 // Sample monasteries + tourist spots
 const monasteries = [
-  { name: "Pemayangtse Monastery", position: [27.3275, 88.6108], type: "Monastery" },
-  { name: "Rumtek Monastery", position: [27.3300, 88.5610], type: "Monastery" },
-  { name: "Tashiding Monastery", position: [27.3110, 88.4790], type: "Monastery" },
+  { name: "Pemayangtse Monastery", position: [27.3275, 88.6108], type: "मठ / Monastery" },
+  { name: "Rumtek Monastery", position: [27.3300, 88.5610], type: "मठ / Monastery" },
+  { name: "Tashiding Monastery", position: [27.3110, 88.4790], type: "मठ / Monastery" },
 ];
 
 const touristSpots = [
-  { name: "Khecheopalri Lake", position: [27.3433, 88.3167], type: "Tourist Spot" },
-  { name: "Nathula Pass", position: [27.3607, 88.9557], type: "Tourist Spot" },
+  { name: "Khecheopalri Lake", position: [27.3433, 88.3167], type: "पर्यटक स्थल / Tourist Spot" },
+  { name: "Nathula Pass", position: [27.3607, 88.9557], type: "पर्यटक स्थल / Tourist Spot" },
 ];
 
 const Nearby = ({ user, onLogout }) => {
@@ -39,7 +39,7 @@ const Nearby = ({ user, onLogout }) => {
     setDirections([]);
 
     if (!source || !destination) {
-      setError("Please select both source and destination.");
+      setError("कृपया स्रोत र गन्तव्य दुवै चयन गर्नुहोस्। / Please select both source and destination.");
       return;
     }
 
@@ -47,7 +47,7 @@ const Nearby = ({ user, onLogout }) => {
     const dest = [...monasteries, ...touristSpots].find((l) => l.name === destination);
 
     if (!src || !dest) {
-      setError("Invalid source or destination.");
+      setError("अमान्य स्रोत वा गन्तव्य। / Invalid source or destination.");
       return;
     }
 
@@ -72,7 +72,7 @@ const Nearby = ({ user, onLogout }) => {
       setDirections(steps);
     } catch (err) {
       console.error(err);
-      setError("Could not fetch route. Check API key & network.");
+      setError("मार्ग फेला पार्न सकिएन। API कुञ्जी र नेटवर्क जाँच गर्नुहोस्। / Could not fetch route. Check API key & network.");
     }
   };
 
@@ -113,15 +113,15 @@ const Nearby = ({ user, onLogout }) => {
 
         {/* Side Panel */}
         <div className="md:w-1/3 w-full bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-orange-100 h-[80vh] overflow-y-auto">
-          <h2 className="text-2xl font-bold text-orange-800 mb-6">Plan Your Trip</h2>
+          <h2 className="text-2xl font-bold text-orange-800 mb-6">तपाईंको यात्रा योजना गर्नुहोस् / Plan Your Trip</h2>
 
-          <label className="block mb-2 text-orange-700 font-semibold">Source</label>
+          <label className="block mb-2 text-orange-700 font-semibold">स्रोत (Source)</label>
           <select
             value={source}
             onChange={(e) => setSource(e.target.value)}
             className="w-full border border-orange-300 rounded-lg px-3 py-2 mb-4 shadow-sm focus:ring-2 focus:ring-orange-200 transition"
           >
-            <option value="">Select Source</option>
+            <option value="">-- स्रोत चयन गर्नुहोस् / Select Source --</option>
             {[...monasteries, ...touristSpots].map((loc, i) => (
               <option key={i} value={loc.name}>
                 {loc.name}
@@ -129,13 +129,13 @@ const Nearby = ({ user, onLogout }) => {
             ))}
           </select>
 
-          <label className="block mb-2 text-orange-700 font-semibold">Destination</label>
+          <label className="block mb-2 text-orange-700 font-semibold">गन्तव्य (Destination)</label>
           <select
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             className="w-full border border-orange-300 rounded-lg px-3 py-2 mb-4 shadow-sm focus:ring-2 focus:ring-orange-200 transition"
           >
-            <option value="">Select Destination</option>
+            <option value="">-- गन्तव्य चयन गर्नुहोस् / Select Destination --</option>
             {[...monasteries, ...touristSpots].map((loc, i) => (
               <option key={i} value={loc.name}>
                 {loc.name}
@@ -147,14 +147,14 @@ const Nearby = ({ user, onLogout }) => {
             onClick={handleRoute}
             className="w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-lg mb-4 shadow-md transition"
           >
-            Show Route
+            मार्ग देखाउनुहोस् / Show Route
           </button>
 
           {error && <div className="text-red-600 font-medium mb-4">{error}</div>}
 
           {directions.length > 0 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-orange-700">Directions:</h3>
+              <h3 className="text-xl font-semibold mb-2 text-orange-700">निर्देशनहरू / Directions:</h3>
               <ul className="list-decimal list-inside space-y-1 text-gray-700">
                 {directions.map((step, i) => (
                   <li key={i}>{step}</li>
