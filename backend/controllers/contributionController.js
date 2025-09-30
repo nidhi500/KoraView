@@ -1,37 +1,45 @@
 import Contribution from "../models/Contribution.js";
 
-export const getContributions = async (req, res) => {
+// Get all contributions (grouped by type)
+export const getAllContributions = async (req, res) => {
   try {
-    const monks = await Contribution.find({ type: "monk" });
-    const locals = await Contribution.find({ type: "local" });
-    const researchers = await Contribution.find({ type: "researcher" });
+    const contributions = await Contribution.find();
 
-    res.json({ monks, locals, researchers });
+    const grouped = {
+      monks: contributions.filter(c => c.type === "monks" && !c.approved),
+      locals: contributions.filter(c => c.type === "locals" && !c.approved),
+      researchers: contributions.filter(c => c.type === "researchers" && !c.approved)
+    };
+
+    res.json(grouped);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
+// Approve a contribution
 export const approveContribution = async (req, res) => {
   try {
     const { id } = req.params;
-    const contribution = await Contribution.findByIdAndUpdate(
+    const updated = await Contribution.findByIdAndUpdate(
       id,
       { approved: true },
       { new: true }
     );
-    res.json(contribution);
+    res.json(updated);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
+// Reject a contribution (delete it)
 export const rejectContribution = async (req, res) => {
   try {
     const { id } = req.params;
     await Contribution.findByIdAndDelete(id);
-    res.json({ message: "Contribution rejected and deleted." });
+    res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
   }
 };

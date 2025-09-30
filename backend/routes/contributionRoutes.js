@@ -1,20 +1,21 @@
 import express from "express";
-import { 
-  getContributions, 
-  approveContribution, 
-  rejectContribution 
+import {
+  getAllContributions,
+  approveContribution,
+  rejectContribution
 } from "../controllers/contributionController.js";
-import { verifyToken } from "../middleware/authMiddleware.js";
+
+import { verifyToken } from "../middleware/authMiddleware.js"; // your auth middleware
 
 const router = express.Router();
 
-// Get all contributions (admin only)
-router.get("/", verifyToken, getContributions);
+// Get all contributions (grouped)
+router.get("/", verifyToken, getAllContributions);
 
-// Approve contribution
+// Approve a contribution
 router.put("/:id/approve", verifyToken, approveContribution);
 
-// Reject contribution
+// Reject a contribution
 router.put("/:id/reject", verifyToken, rejectContribution);
 
 export default router;

@@ -1,11 +1,13 @@
-// backend/models/Contribution.js
 import mongoose from "mongoose";
 
 const contributionSchema = new mongoose.Schema({
+  type: { type: String, enum: ["monks", "locals", "researchers"], required: true },
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  type: { type: String, enum: ["monk", "local", "researcher"], required: true },
   submittedBy: { type: String, required: true },
+  content: { type: String },
+  files: [{ name: String, url: String }], // can also store as plain string
+  audio: [{ lang: String, file: String }],
+  video: { type: String },
   approved: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
