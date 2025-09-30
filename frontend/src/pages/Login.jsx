@@ -60,21 +60,22 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm"
-            />
+  type="email"
+  placeholder="admin@sikkim360.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  required
+  className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm placeholder-gray-400"
+/>
+<input
+  type="password"
+  placeholder="ADMIN1234"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  required
+  className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm placeholder-gray-400"
+/>
+
             <button
               type="submit"
               className="w-full py-3 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:bg-green-700 transition duration-300"
