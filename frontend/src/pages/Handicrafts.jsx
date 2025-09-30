@@ -9,12 +9,11 @@ const handicraftList = [
     location: "Gangtok, East Sikkim",
     description:
       "Traditional Tibetan Buddhist scroll paintings, often depicting deities and mandalas. Crafted with natural pigments and fine cotton or silk.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Thangka-Painting.jpg",
+    thumbnail: "/assets/images/thangka1.jpg",
     gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Thangka-Painting.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/34/45/67/thangka-gallery.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/34/45/68/thangka-art.jpg",
+      "/assets/images/thangka1.jpg",
+      "/assets/images/thangka2.webp",
+      "/assets/images/thangka3.jpg",
     ],
     price: "₹2500 onwards",
     contact: "+91 9880011111",
@@ -26,13 +25,8 @@ const handicraftList = [
     location: "Namchi, South Sikkim",
     description:
       "Exquisite hand-carved wooden masks, figures, and panels used in monasteries and traditional homes.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Wood-Carving-Sikkim.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Wood-Carving-Sikkim.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/17/82/92/ab/wood-carving.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/17/82/92/ac/masks.jpg",
-    ],
+    thumbnail: "/assets/images/wood1.jpg",
+    gallery: ["/assets/images/wood1.jpg", "/assets/images/wood2.jpg", "/assets/images/wood3.jpg"],
     price: "₹1500 onwards",
     contact: "+91 9880011112",
     approved: true,
@@ -43,13 +37,8 @@ const handicraftList = [
     location: "Ravangla, South Sikkim",
     description:
       "Handwoven wool carpets featuring dragon, floral, and geometric motifs. A blend of Tibetan and Sikkimese designs.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sikkim-Carpet-Weaving.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sikkim-Carpet-Weaving.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/aa/cc/11/sikkim-carpet.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/12/aa/cc/12/loom.jpg",
-    ],
+    thumbnail: "/assets/images/carpet1.jpg",
+    gallery: ["/assets/images/carpet1.jpg", "/assets/images/carpet2.webp", "/assets/images/carpet3.jpg"],
     price: "₹3000 onwards",
     contact: "+91 9880011113",
     approved: true,
@@ -60,13 +49,8 @@ const handicraftList = [
     location: "Dzongu, North Sikkim",
     description:
       "Sustainable and eco-friendly crafts including baskets, trays, furniture, and decorative items made by Lepcha artisans.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Bamboo-Crafts-Sikkim.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Bamboo-Crafts-Sikkim.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/19/83/aa/22/bamboo-items.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/19/83/aa/20/cane-crafts.jpg",
-    ],
+    thumbnail: "/assets/images/bamboo1.webp",
+    gallery: ["/assets/images/bamboo1.webp", "/assets/images/bamboo2.jpg", "/assets/images/bamboo3.webp"],
     price: "₹500 onwards",
     contact: "+91 9880011114",
     approved: true,
@@ -77,13 +61,8 @@ const handicraftList = [
     location: "Gangtok, East Sikkim",
     description:
       "Intricately carved foldable wooden tables, usually painted with dragons, flowers, and Buddhist symbols.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Choktse-Tables.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Choktse-Tables.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1a/2b/3c/44/choktse.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1a/2b/3c/45/tables.jpg",
-    ],
+    thumbnail: "/assets/images/choktse1.jpg",
+    gallery: ["/assets/images/choktse1.jpg", "/assets/images/choktse2.png", "/assets/images/choktse3.jpg"],
     price: "₹4000 onwards",
     contact: "+91 9880011115",
     approved: true,
@@ -94,18 +73,15 @@ const handicraftList = [
     location: "Namchi, South Sikkim",
     description:
       "Beautiful handwoven woollen shawls and blankets made with traditional looms, popular for their warmth and designs.",
-    thumbnail:
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sikkim-Handloom-Shawls.jpg",
-    gallery: [
-      "https://www.sikkimtourism.org/wp-content/uploads/2023/11/Sikkim-Handloom-Shawls.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1b/2c/3d/55/handloom.jpg",
-      "https://media-cdn.tripadvisor.com/media/photo-s/1b/2c/3d/56/shawl.jpg",
-    ],
+    thumbnail: "/assets/images/shawl1.jpg",
+    gallery: ["/assets/images/shawl1.jpg", "/assets/images/shawl2.jpg", "/assets/images/shawl3.jpg"],
     price: "₹1200 onwards",
     contact: "+91 9880011116",
     approved: true,
   },
 ];
+
+
 
 export default function Handicrafts() {
   const [handicrafts] = useState(handicraftList);
@@ -134,17 +110,36 @@ export default function Handicrafts() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-amber-50">
       <Navbar />
-      <div className="container mx-auto px-6 py-20">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-indigo-700 mb-4 text-center">
-          Sikkim Handicrafts
-        </h1>
-        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
-          Explore traditional handicrafts of Sikkim — from Thangka paintings to bamboo crafts,
-          showcasing the artistry and cultural heritage of the region.
-        </p>
 
+      {/* Hero Section */}
+       <section
+  className="relative py-24 bg-cover bg-center overflow-hidden"
+  style={{ backgroundImage: "url('/assets/images/handicrafts_hero.webp')" }}
+>
+  {/* Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-amber-800/80 via-orange-700/70 to-green-800/80"></div>
+
+  {/* Content */}
+  <div className="container mx-auto px-6 relative z-10 text-center text-white">
+    <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+      Explore Sikkim Handicrafts / सिक्किमका हस्तकला
+    </h1>
+    <p className="text-lg md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+      Discover timeless artistry — from Thangka paintings to bamboo crafts — supporting
+      local artisans and preserving cultural heritage. / ठाङ्का चित्रदेखि बाँसका
+      हस्तकलासम्म, स्थानीय कलाकारलाई समर्थन गर्नुहोस् र सांस्कृतिक सम्पदा जोगाउनुहोस्।
+    </p>
+    <button className="bg-white text-orange-700 font-semibold px-8 py-3 rounded-2xl shadow hover:bg-orange-100 transition">
+      Explore Handicrafts
+    </button>
+  </div>
+</section>
+
+
+      {/* Handicrafts Grid */}
+      <div className="container mx-auto px-6 py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {handicrafts.map((item) => (
             <article
@@ -161,7 +156,7 @@ export default function Handicrafts() {
                   {item.location}
                 </div>
                 <div className="absolute right-3 top-3">
-                  <span className="bg-green-600 text-white text-xs px-2 py-1 rounded">
+                  <span className="bg-green-700 text-white text-xs px-2 py-1 rounded">
                     {item.approved ? "Verified" : "Pending"}
                   </span>
                 </div>
@@ -176,13 +171,13 @@ export default function Handicrafts() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => openModal(item)}
-                      className="bg-indigo-600 text-white px-3 py-1 rounded-lg hover:bg-indigo-700 transition"
+                      className="bg-orange-600 text-white px-3 py-1 rounded-lg hover:bg-orange-700 transition"
                     >
                       View
                     </button>
                     <a
                       href={`tel:${item.contact.replace(/\s+/g, "")}`}
-                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg hover:bg-gray-200 transition"
+                      className="bg-green-100 text-green-800 px-3 py-1 rounded-lg hover:bg-green-200 transition"
                     >
                       Call
                     </a>
@@ -194,7 +189,7 @@ export default function Handicrafts() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal (same as before) */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-6">
           <div
@@ -238,7 +233,7 @@ export default function Handicrafts() {
                         onClick={() => setGalleryIndex(i)}
                         className={`w-20 h-12 shrink-0 rounded overflow-hidden border ${
                           i === galleryIndex
-                            ? "border-indigo-600"
+                            ? "border-orange-600"
                             : "border-gray-200"
                         }`}
                       >
@@ -257,12 +252,10 @@ export default function Handicrafts() {
               <div className="md:w-1/2 p-6 flex flex-col">
                 <div className="flex justify-between items-start gap-4">
                   <div>
-                    <h2 className="text-2xl font-bold text-indigo-800">
+                    <h2 className="text-2xl font-bold text-orange-800">
                       {selected.name}
                     </h2>
-                    <p className="text-sm text-gray-500 mt-1">
-                      {selected.location}
-                    </p>
+                    <p className="text-sm text-gray-500 mt-1">{selected.location}</p>
                   </div>
                   <button
                     onClick={closeModal}
@@ -276,14 +269,16 @@ export default function Handicrafts() {
 
                 <div className="mt-4">
                   <div className="text-sm text-gray-600">Price</div>
-                  <div className="text-xl font-semibold">{selected.price}</div>
+                  <div className="text-xl font-semibold text-brown-700">
+                    {selected.price}
+                  </div>
                 </div>
 
                 <div className="mt-4">
                   <div className="text-sm text-gray-600">Contact</div>
                   <a
                     href={`tel:${selected.contact.replace(/\s+/g, "")}`}
-                    className="text-indigo-600 font-medium"
+                    className="text-green-700 font-medium"
                   >
                     {selected.contact}
                   </a>
@@ -298,7 +293,7 @@ export default function Handicrafts() {
                   </a>
                   <button
                     onClick={() => alert("Request sent to artisan (demo)")}
-                    className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200"
+                    className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg hover:bg-orange-200"
                   >
                     Request Info
                   </button>

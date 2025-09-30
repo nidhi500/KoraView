@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Mountain, Calendar, MapPin, Book, Volume2 } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import FloatingChatbot from "../components/FloatingChatbot";
 
 /* =========================
    Data (unchanged basics)
@@ -353,57 +355,7 @@ const Home = () => {
       `}</style>
 
       {/* Navbar */}
-      <header className="w-full z-40 sticky top-0">
-        <div className="bg-gradient-to-r from-orange-900/90 to-amber-800/90 glass shadow-md">
-          <div className="container mx-auto px-4 flex items-center justify-between py-3">
-            <div className="flex items-center gap-4">
-              <img
-                src="/logo.png"
-                alt="KoraView"
-                className="h-12 w-12 rounded-full border-2 border-amber-200 shadow-lg" />
-              <div className="leading-tight">
-                <div className="text-white font-bold text-xl">KoraView</div>
-                <div className="text-xs text-amber-100">སྐུ་ལུང་བལ་གཡུལ། - Monastery Heritage of Sikkim</div>
-              </div>
-            </div>
-            <nav className="hidden md:flex items-center gap-6 text-white">
-              {[
-                ['/', 'Home'],
-                ['/explore', 'Explore'],
-                ['/nearby', 'Nearby'],
-                ['/calendar', 'Cultural Calendar'],
-                ['/community', 'Community'],
-                ['/homestays', 'Homestays'],
-                ['/handicrafts', 'Handicrafts'],
-                ['/tours', 'Local Tours'],
-              ].map(([href, label]) => (
-                <a
-                  key={href}
-                  href={href}
-                  className="hover:text-amber-200 transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 hover:after:w-full after:bg-amber-200 after:transition-all"
-                >
-                  {label}
-                </a>
-              ))}
-              <a
-                href="/login"
-                className="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-full transition-colors shadow-sm"
-              >
-                Login
-              </a>
-            </nav>
-            <div className="md:hidden">
-              <a
-                href="/login"
-                className="bg-amber-600 hover:bg-amber-500 text-white px-3 py-1 rounded-full"
-              >
-                Login
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
-
+     <Navbar/>
       {/* Hero */}
       <section
         className="relative py-20 bg-cover bg-center overflow-hidden"
@@ -512,6 +464,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <FloatingChatbot />
 
       {/* Footer */}
       <footer className="bg-orange-900 text-white py-12">

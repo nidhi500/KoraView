@@ -19,8 +19,8 @@ const monasteries = [
       english: "/assets/audio/pemayangtse-english.mp3",
     },
     archives: [
-      { id: 1, title: "Ancient Tibetan Text 1", image: "/assets/images/monastery1.jpg" },
-      { id: 2, title: "Buddhist Manuscript Archive", image: "/assets/images/monastery2.jpg" },
+      { id: 1, title: "Ancient Tibetan Text 1", image: "./assets/images/monastery1.jpg" },
+      { id: 2, title: "Buddhist Manuscript Archive", image: "./assets/images/monastery2.jpg" },
     ],
   },
   {
@@ -33,13 +33,13 @@ const monasteries = [
     description:
       "Rumtek Monastery is the largest monastery in Sikkim and is the seat of the Karmapa Lama. Originally built in the 16th century, it was reconstructed in the 1960s.",
     audio: {
-      hindi: "/assets/audio/rumtek-hindi.mp3",
-      nepali: "/assets/audio/rumtek-nepali.mp3",
-      english: "/assets/audio/rumtek-english.mp3",
+      hindi: "/assets/audio/pemayangtse-hindi.mp3",
+      nepali: "/assets/audio/pemayangtse-nepali.mp3",
+      english: "/assets/audio/pemayangtse-english.mp3",
     },
     archives: [
-      { id: 1, title: "Karmapa Texts", image: "/assets/images/rumtek1.jpg" },
-      { id: 2, title: "Buddhist Sutras", image: "/assets/images/rumtek2.jpg" },
+      { id: 1, title: "Karmapa Texts", image: "./assets/images/monastery1.jpg" },
+      { id: 2, title: "Buddhist Sutras",image: "./assets/images/monastery2.jpg" },
     ],
   },
   {
@@ -52,13 +52,13 @@ const monasteries = [
     description:
       "Tashiding Monastery is an important pilgrimage site in Sikkim, built in the 17th century. It is renowned for its sacred rituals and festivals.",
     audio: {
-      hindi: "/assets/audio/tashiding-hindi.mp3",
-      nepali: "/assets/audio/tashiding-nepali.mp3",
-      english: "/assets/audio/tashiding-english.mp3",
+       hindi: "/assets/audio/pemayangtse-hindi.mp3",
+      nepali: "/assets/audio/pemayangtse-nepali.mp3",
+      english: "/assets/audio/pemayangtse-english.mp3",
     },
     archives: [
-      { id: 1, title: "Tashiding Scrolls", image: "/assets/images/tashiding1.jpg" },
-      { id: 2, title: "Buddhist Archives", image: "/assets/images/tashiding2.jpg" },
+      { id: 1, title: "Tashiding Scrolls", image: "./assets/images/monastery1.jpg" },
+      { id: 2, title: "Buddhist Archives",image: "./assets/images/monastery2.jpg" },
     ],
   },
 ];

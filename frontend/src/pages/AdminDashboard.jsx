@@ -1,6 +1,8 @@
+// src/pages/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { getMonasteries, approveMonastery } from "../api/monasteryAPI";
+import Navbar from "../components/Navbar";
 import {
   getContributions,
   approveContribution,
@@ -16,7 +18,6 @@ export default function AdminDashboard() {
     locals: [],
     researchers: [],
   });
-  const [selectedContribution, setSelectedContribution] = useState(null);
 
   const token = localStorage.getItem("token") || "";
 
@@ -68,92 +69,97 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-b from-orange-50 to-amber-50">
-      <h1 className="text-4xl font-bold text-orange-900 mb-10 drop-shadow-sm">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-amber-50">
+      {/* Sticky Navbar */}
+      <div className="sticky top-0 z-50 bg-gradient-to-b from-orange-50 to-amber-50 shadow-md">
+        <Navbar />
+      </div>
+
+      {/* Centered Heading */}
+      <h1 className="text-4xl md:text-5xl font-bold text-orange-900 text-center my-12 drop-shadow-md">
         Admin Dashboard
       </h1>
-<section className="mb-16">
-  <h2 className="text-2xl font-semibold text-orange-800 mb-6">
-    Monasteries
-  </h2>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {monasteries.length === 0 && (
-      <p className="text-gray-600 italic col-span-full">
-        No monasteries found in database.
-      </p>
-    )}
-    {monasteries.map((m) => (
-      <div
-        key={m._id}
-        className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
-      >
-        {m.thumbnail && (
-          <img
-            src={m.thumbnail}
-            alt={m.name}
-            className="w-full h-48 object-cover"
-          />
-        )}
-        <div className="p-6 space-y-3">
-          <h3 className="text-xl font-semibold text-orange-900">{m.name}</h3>
-          <p className="text-gray-700">{m.description}</p>
-          <p className="text-gray-500">
-            Location: {m.location.lat}, {m.location.lng}
-          </p>
-          {m.archives?.length > 0 && (
-            <div>
-              <h4 className="font-semibold mt-2">Archives:</h4>
-              {m.archives.map((file, idx) => (
-                <a
-                  key={idx}
-                  href={file}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 underline block"
-                >
-                  {file.split("/").pop()}
-                </a>
-              ))}
-            </div>
+
+      {/* Monasteries Section */}
+      <section className="mb-16 px-4 md:px-8">
+        <h2 className="text-2xl font-semibold text-orange-800 mb-6">
+          Monasteries
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {monasteries.length === 0 && (
+            <p className="text-gray-600 italic col-span-full text-center">
+              No monasteries found in database.
+            </p>
           )}
-          {!m.approved && (
-            <button
-              onClick={() => handleApproveMonastery(m._id)}
-              className="mt-3 w-full bg-green-600 text-white py-2 rounded-full hover:bg-green-700 transition"
+          {monasteries.map((m) => (
+            <div
+              key={m._id}
+              className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition overflow-hidden border border-orange-100 hover:-translate-y-1 scale-100 hover:scale-105 duration-300"
             >
-              Approve
-            </button>
-          )}
-          {m.approved && (
-            <p className="text-green-700 font-semibold mt-2">✅ Approved</p>
-          )}
+              {m.thumbnail && (
+                <img
+                  src={"/assets/images/rumtek1.jpg"}
+                  alt={m.name}
+                  className="w-full h-56 object-cover transition-transform duration-300"
+                />
+              )}
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-semibold text-orange-900">{m.name}</h3>
+                <p className="text-gray-700 line-clamp-3">{m.description}</p>
+                <p className="text-gray-500 text-sm">
+                  Location: {m.location.lat}, {m.location.lng}
+                </p>
+                {m.archives?.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mt-2">Archives:</h4>
+                    {m.archives.map((file, idx) => (
+                      <a
+                        key={idx}
+                        href={file}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 underline block truncate"
+                        title={file.split("/").pop()}
+                      >
+                        {file.split("/").pop()}
+                      </a>
+                    ))}
+                  </div>
+                )}
+                {!m.approved ? (
+                  <button
+                    onClick={() => handleApproveMonastery(m._id)}
+                    className="mt-4 w-full bg-green-600 text-white py-2 rounded-2xl hover:bg-green-700 transition shadow"
+                  >
+                    Approve
+                  </button>
+                ) : (
+                  <p className="text-green-700 font-semibold mt-3">✅ Approved</p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
-
-      {/* ================= Contributions ================= */}
+      {/* Contributions Section */}
       {["monks", "locals", "researchers"].map((type) => (
-        <section key={type} className="mb-16">
-          <h2 className="text-2xl font-semibold text-orange-800 mb-6 capitalize">
+        <section key={type} className="mb-16 px-4 md:px-8">
+          <h2 className="text-3xl font-bold text-orange-800 mb-6 capitalize">
             {type} Contributions
           </h2>
           {contributions[type]?.length === 0 ? (
-            <p className="text-gray-600 italic">
-              No pending {type} contributions.
-            </p>
+            <p className="text-gray-600 italic text-center">No pending {type} contributions.</p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {contributions[type].map((c) => (
                 <div
                   key={c._id}
-                  className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition"
+                  className="bg-white rounded-3xl shadow-lg p-6 hover:shadow-2xl transition border border-orange-100 hover:-translate-y-1 hover:scale-105 duration-300"
                 >
-                  <h3 className="text-xl font-semibold text-indigo-800">{c.title}</h3>
+                  <h3 className="text-xl font-semibold text-orange-700">{c.title}</h3>
                   <p className="text-gray-700 mt-1">Submitted By: {c.submittedBy}</p>
-                  {c.content && <p className="text-gray-600 mt-2">{c.content}</p>}
+                  {c.content && <p className="text-gray-600 mt-2 line-clamp-4">{c.content}</p>}
 
                   {c.files?.map((f, idx) => (
                     <a
@@ -161,41 +167,41 @@ export default function AdminDashboard() {
                       href={f.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-blue-600 underline block mt-1"
+                      className="text-blue-600 underline block mt-1 truncate"
+                      title={f.name || "File"}
                     >
                       {f.name || "File"}
                     </a>
                   ))}
 
                   {c.audio && (
-                    <audio controls className="w-full mt-2">
+                    <audio controls className="w-full mt-2 rounded-lg">
                       <source src={c.audio} />
                     </audio>
                   )}
                   {c.video && (
-                    <video controls className="w-full mt-2 rounded-lg">
+                    <video controls className="w-full mt-2 rounded-2xl shadow">
                       <source src={c.video} />
                     </video>
                   )}
 
-                  <div className="flex gap-2 mt-4">
-                    {!c.approved && (
+                  <div className="flex gap-3 mt-4">
+                    {!c.approved ? (
                       <>
                         <button
                           onClick={() => handleApproveContribution(c._id, type)}
-                          className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+                          className="bg-green-600 text-white px-5 py-2 rounded-2xl hover:bg-green-700 transition shadow"
                         >
                           Approve
                         </button>
                         <button
                           onClick={() => handleRejectContribution(c._id, type)}
-                          className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+                          className="bg-red-600 text-white px-5 py-2 rounded-2xl hover:bg-red-700 transition shadow"
                         >
                           Reject
                         </button>
                       </>
-                    )}
-                    {c.approved && (
+                    ) : (
                       <p className="text-green-700 font-semibold mt-2">✅ Approved</p>
                     )}
                   </div>
@@ -204,7 +210,27 @@ export default function AdminDashboard() {
             </div>
           )}
         </section>
+        
       ))}
+      {/* Footer */}
+      <footer className="bg-orange-900 text-white py-12">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-300 to-orange-400 rounded-full flex items-center justify-center shadow-lg border-2 border-amber-200 mx-auto mb-4 will-change-transform transition-transform hover:scale-105">
+              <div className="text-orange-800 font-bold text-2xl">སྐུ</div>
+            </div>
+            <h5 className="text-2xl font-bold mb-2">KoraView</h5>
+            <p className="text-amber-200 mb-6">
+              སྐུ་ལུང་བལ་གཡུལ། - Preserving the Sacred Heritage of Sikkim
+            </p>
+            <div className="border-t border-orange-700 pt-6">
+              <p className="text-amber-300 text-sm">
+                བཀྲ་ཤིས་བདེ་ལེགས། - May all beings be blessed with happiness and prosperity
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
