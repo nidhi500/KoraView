@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import monasteryRoutes from "./routes/monasteryRoutes.js";
 import contributionRoutes from "./routes/contributionRoutes.js";
-import homestayRoutes from "./routes/homestayRoutes.js";
 
 dotenv.config();
 
@@ -21,7 +20,6 @@ app.use("/auth", authRoutes);
 app.use("/api/monasteries", monasteryRoutes);
 app.use("/api/contributions", contributionRoutes);
 
-app.use("/api/homestays", homestayRoutes);
 // Connect MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

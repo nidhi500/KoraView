@@ -148,10 +148,15 @@ export default function Community({ user, onLogout }) {
       <Navbar user={user} onLogout={onLogout} />
 
       {/* Hero */}
-      <section
-        className="relative py-24 bg-cover bg-center overflow-hidden"
-        style={{ backgroundImage: "url('/assets/images/community_hero.jpg')" }}
-      >
+     <section
+  className="relative py-24 bg-cover bg-center bg-no-repeat overflow-hidden"
+  style={{
+    backgroundImage: "url('/assets/images/community_hero.avif')",
+    backgroundSize: "cover",   // fills while maintaining aspect ratio
+    backgroundPosition: "center", // keeps subject centered
+  }}
+>
+
         <div className="absolute inset-0 bg-gradient-to-r from-orange-900/70 via-amber-800/50 to-orange-900/70"></div>
         <div className="container mx-auto px-6 relative z-10 text-center text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
