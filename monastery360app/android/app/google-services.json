@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "827627617945",
+    "project_id": "kora-view",
+    "storage_bucket": "kora-view.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827627617945:android:dfbc4054730981009cc208",
+        "android_client_info": {
+          "package_name": "com.example.monastery360app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlUmazwzei0yCBMzHL_SBCCKb33MFQryw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
