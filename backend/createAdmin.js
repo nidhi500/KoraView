@@ -7,8 +7,8 @@ dotenv.config();
 
 const resetPassword = async () => {
   await mongoose.connect(process.env.MONGO_URI);
-  const hashed = await bcrypt.hash("admin123", 10);
-  await User.updateOne({ email: "admin@sikkim360.com" }, { $set: { password: hashed } });
+  const hashed = await bcrypt.hash("admin1234", 10);
+  await User.updateOne({ email: "admin@sikkim3601.com" }, { $set: { password: hashed } });
   console.log("Admin password reset successfully");
   process.exit(0);
 };

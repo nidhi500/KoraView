@@ -4,7 +4,7 @@ import { getMonasteries, createMonastery } from "../api/monasteryAPI";
 export default function ContributorDashboard() {
   const [monasteries, setMonasteries] = useState([]);
   const [form, setForm] = useState({ name: "", lat: "", lng: "" });
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZGI1ZmFiNDYzZTJhNTFhMzMwZjdlZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1OTIxMDMwOCwiZXhwIjoxNzU5ODE1MTA4fQ.u570R1QFin7PlekXZvLdECkssy0AyjsdQHpmLsJnYjA");
 
   useEffect(() => {
     fetchMonasteries();

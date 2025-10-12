@@ -9,8 +9,9 @@ const monasterySchema = new mongoose.Schema({
   },
   thumbnail: { type: String },
   description: { type: String },
-  archives: [{ type: String }], // array of archive URLs or IDs
-});
+  archives: [{ type: String }],
+  approved: { type: Boolean, default: false }, // added
+}, { timestamps: true });
 
 const Monastery = mongoose.model("Monastery", monasterySchema);
 

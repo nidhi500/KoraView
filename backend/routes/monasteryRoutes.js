@@ -1,12 +1,13 @@
 import express from "express";
-import { getMonasteries } from "../controllers/monasteryController.js";
+import { getMonasteries, approveMonastery } from "../controllers/monasteryController.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Example routes
+// Get all monasteries
 router.get("/", getMonasteries);
 
-// Add more routes here as needed
-// router.get("/:id", getMonasteryById);
+// Approve a monastery (admin only)
+router.put("/:id/approve", verifyToken, approveMonastery);
 
 export default router;

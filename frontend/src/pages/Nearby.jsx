@@ -13,16 +13,16 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "/assets/images/marker-shadow.png",
 });
 
-// Sample monasteries + tourist spots (with coordinates)
+// Sample monasteries + tourist spots
 const monasteries = [
-  { name: "Pemayangtse Monastery", position: [27.3275, 88.6108], type: "Monastery" },
-  { name: "Rumtek Monastery", position: [27.3300, 88.5610], type: "Monastery" },
-  { name: "Tashiding Monastery", position: [27.3110, 88.4790], type: "Monastery" },
+  { name: "Pemayangtse Monastery", position: [27.3275, 88.6108], type: "मठ / Monastery" },
+  { name: "Rumtek Monastery", position: [27.3300, 88.5610], type: "मठ / Monastery" },
+  { name: "Tashiding Monastery", position: [27.3110, 88.4790], type: "मठ / Monastery" },
 ];
 
 const touristSpots = [
-  { name: "Khecheopalri Lake", position: [27.3433, 88.3167], type: "Tourist Spot" },
-  { name: "Nathula Pass", position: [27.3607, 88.9557], type: "Tourist Spot" },
+  { name: "Khecheopalri Lake", position: [27.3433, 88.3167], type: "पर्यटक स्थल / Tourist Spot" },
+  { name: "Nathula Pass", position: [27.3607, 88.9557], type: "पर्यटक स्थल / Tourist Spot" },
 ];
 
 const Nearby = ({ user, onLogout }) => {
@@ -39,7 +39,7 @@ const Nearby = ({ user, onLogout }) => {
     setDirections([]);
 
     if (!source || !destination) {
-      setError("Please select both source and destination.");
+      setError("कृपया स्रोत र गन्तव्य दुवै चयन गर्नुहोस्। / Please select both source and destination.");
       return;
     }
 
@@ -47,19 +47,18 @@ const Nearby = ({ user, onLogout }) => {
     const dest = [...monasteries, ...touristSpots].find((l) => l.name === destination);
 
     if (!src || !dest) {
-      setError("Invalid source or destination.");
+      setError("अमान्य स्रोत वा गन्तव्य। / Invalid source or destination.");
       return;
     }
 
     try {
-      const apiKey = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjZmYmU4ZmQwOTU1YTRiZmVhNGM3ZDJlOTAxNGI0MTYzIiwiaCI6Im11cm11cjY0In0="; // Replace with your OpenRouteService API Key
+      const apiKey = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjZmYmU4ZmQwOTU1YTRiZmVhNGM3ZDJlOTAxNGI0MTYzIiwiaCI6Im11cm11cjY0In0=";
       const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${src.position[1]},${src.position[0]}&end=${dest.position[1]},${dest.position[0]}`;
 
       const res = await fetch(url);
       if (!res.ok) throw new Error("API request failed");
 
       const data = await res.json();
-
       const coords = data.features[0].geometry.coordinates.map((c) => [c[1], c[0]]);
       setRouteCoords(coords);
 
@@ -73,23 +72,23 @@ const Nearby = ({ user, onLogout }) => {
       setDirections(steps);
     } catch (err) {
       console.error(err);
-      setError("Could not fetch route. Check API key & network.");
+      setError("मार्ग फेला पार्न सकिएन। API कुञ्जी र नेटवर्क जाँच गर्नुहोस्। / Could not fetch route. Check API key & network.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-70">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Navbar */}
-      <Navbar user={user} onLogout={onLogout} className="bg-gray-50"/>
+      <Navbar user={user} onLogout={onLogout} />
 
-      <div className="flex flex-col md:flex-row mt-20">
+      <div className="flex flex-col md:flex-row mt-24 gap-6 px-4 md:px-8">
         {/* Map */}
-        <div className="md:w-2/3 w-full h-screen">
+        <div className="md:w-2/3 w-full rounded-2xl overflow-hidden shadow-lg border border-orange-100">
           <MapContainer
             center={[27.33, 88.62]}
             zoom={10}
             scrollWheelZoom={true}
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "80vh", width: "100%" }}
             ref={mapRef}
             maxBounds={[
               [26.5, 87.8],
@@ -97,34 +96,32 @@ const Nearby = ({ user, onLogout }) => {
             ]}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            
-            {/* Markers */}
+
             {[...monasteries, ...touristSpots].map((loc, i) => (
               <Marker key={i} position={loc.position}>
                 <Tooltip direction="top" offset={[0, -10]} opacity={1} permanent={false}>
-                  <div className="bg-white shadow-lg p-2 rounded-md text-sm text-gray-800 font-medium">
-                    {loc.name} <span className="text-indigo-600">{loc.type}</span>
+                  <div className="bg-white shadow-md p-2 rounded-md text-sm text-orange-700 font-medium">
+                    {loc.name} <span className="text-indigo-600 font-normal">{loc.type}</span>
                   </div>
                 </Tooltip>
               </Marker>
             ))}
 
-            {/* Route */}
             {routeCoords.length > 0 && <Polyline positions={routeCoords} color="blue" weight={5} />}
           </MapContainer>
         </div>
 
         {/* Side Panel */}
-        <div className="md:w-1/3 w-full bg-white p-6 h-screen overflow-y-auto shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Plan Your Trip</h2>
+        <div className="md:w-1/3 w-full bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-orange-100 h-[80vh] overflow-y-auto">
+          <h2 className="text-2xl font-bold text-orange-800 mb-6">तपाईंको यात्रा योजना गर्नुहोस् / Plan Your Trip</h2>
 
-          <label className="block mb-2 text-gray-700 font-medium">Source</label>
+          <label className="block mb-2 text-orange-700 font-semibold">स्रोत (Source)</label>
           <select
             value={source}
             onChange={(e) => setSource(e.target.value)}
-            className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+            className="w-full border border-orange-300 rounded-lg px-3 py-2 mb-4 shadow-sm focus:ring-2 focus:ring-orange-200 transition"
           >
-            <option value="">Select Source</option>
+            <option value="">-- स्रोत चयन गर्नुहोस् / Select Source --</option>
             {[...monasteries, ...touristSpots].map((loc, i) => (
               <option key={i} value={loc.name}>
                 {loc.name}
@@ -132,13 +129,13 @@ const Nearby = ({ user, onLogout }) => {
             ))}
           </select>
 
-          <label className="block mb-2 text-gray-700 font-medium">Destination</label>
+          <label className="block mb-2 text-orange-700 font-semibold">गन्तव्य (Destination)</label>
           <select
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+            className="w-full border border-orange-300 rounded-lg px-3 py-2 mb-4 shadow-sm focus:ring-2 focus:ring-orange-200 transition"
           >
-            <option value="">Select Destination</option>
+            <option value="">-- गन्तव्य चयन गर्नुहोस् / Select Destination --</option>
             {[...monasteries, ...touristSpots].map((loc, i) => (
               <option key={i} value={loc.name}>
                 {loc.name}
@@ -148,16 +145,16 @@ const Nearby = ({ user, onLogout }) => {
 
           <button
             onClick={handleRoute}
-            className="w-full bg-indigo-700 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg mb-4"
+            className="w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-lg mb-4 shadow-md transition"
           >
-            Show Route
+            मार्ग देखाउनुहोस् / Show Route
           </button>
 
-          {error && <div className="text-red-600 font-medium mb-2">{error}</div>}
+          {error && <div className="text-red-600 font-medium mb-4">{error}</div>}
 
           {directions.length > 0 && (
             <div>
-              <h3 className="text-xl font-semibold mb-2">Directions:</h3>
+              <h3 className="text-xl font-semibold mb-2 text-orange-700">निर्देशनहरू / Directions:</h3>
               <ul className="list-decimal list-inside space-y-1 text-gray-700">
                 {directions.map((step, i) => (
                   <li key={i}>{step}</li>
